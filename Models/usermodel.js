@@ -28,5 +28,5 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-const users = mongoose.model('user', userSchema) // this is the model that we are going to use in the controllers
+const users = mongoose.model('user', userSchema) 
 module.exports = users

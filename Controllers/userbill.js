@@ -1,21 +1,17 @@
-const UserBill = require('../Models/userbillModel'); // Assuming userbillModel is correctly defined
+const UserBill = require('../Models/userbillModel');
 
 exports.addBill = async (req, res) => {
     const { username, selectedMedicines, total } = req.body;
     console.log("inside addBill req");
     try {
-        // Check if a bill already exists for the provided username
         const existingBill = await UserBill.findOne({ username: username });
         if (existingBill) {
             return res.status(400).json({ message: "Bill already exists for this user" });
         } else {
-            // Extract medicine names from selectedMedicines array
             const medicineNames = selectedMedicines.map(medicine => medicine.medicinename);
-
-            // Create a new bill entry
             const newBill = new UserBill({
                 username,
-                medicineName: medicineNames, // Update medicineName with medicine names
+                medicineName: medicineNames, 
                 total
             });
             console.log(`${username}'s bill added successfully`);

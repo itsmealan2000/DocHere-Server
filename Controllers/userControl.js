@@ -33,7 +33,6 @@ exports.login = async (req, res) => {
       const {email,password} = req.body;
       console.log("inside login req");
       try {
-         //  check email password already exist
          const user = await users.findOne({email,password})
          console.log(user);
          if(!user){
@@ -57,16 +56,14 @@ exports.login = async (req, res) => {
 //profile
 exports.profile = async (req, res) => {
    try {
-     const { email } = req.query; // Retrieve email from query parameters
+     const { email } = req.query; 
      console.log({ email });
      console.log("Inside profile controller");
-     // Perform any necessary operations with the email, such as fetching user profile data
      let userProfileData = await users.findOne({ email });
      console.log(userProfileData);
      if (!userProfileData) {
        return res.status(400).json({ message: `User not found: ${email}` });
      }
-     // Send back the user's profile information
      res.status(200).json(userProfileData);
    } catch (err) {
      console.error("Error in profile controller:", err);
