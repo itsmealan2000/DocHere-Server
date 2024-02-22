@@ -73,6 +73,16 @@ exports.profile = async (req, res) => {
      res.status(500).json({ error: "Internal server error" });
    }
  };
- 
+
+ //get all users
+ exports.getAllUsers = async (req, res) => {
+   try {
+       const user = await users.find();
+       res.status(200).json(user);
+   } catch (err) {
+       res.status(404).json({ message: err.message });
+   }
+}
+
 
   
