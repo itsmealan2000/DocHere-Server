@@ -36,3 +36,21 @@ exports.getAllBill = async (req, res) => {
     }
  }
  
+//removebill
+exports.removeBill = async (req, res) => {
+    const { username } = req.body;
+    try {
+        const existingBill = await UserBill.findOne({ username: username });
+        if (!existingBill) {
+            return res.status(400).json({ message: "Bill does not exist for this user" });
+        } else {
+            await UserBill.deleteOne({ username: username });
+            console.log(`${username}'s bill removed successfully`);
+            return res.status(200).json({ message: "Bill removed successfully", username: existingBill.username });
+        }
+    }
+    catch (err) {
+        console.error('Error removing bill:', err);
+        return res.status(500).json({ message: "Failed to remove bill. Please try again later.", error: err });
+    }
+}

@@ -14,6 +14,7 @@ Router.get('/getallusers', userControl.getAllUsers);
 // doctors
 Router.post('/adddoctor', doctorControl.addDoctor);
 Router.get('/getdoctor', doctorControl.getDoctor);
+Router.delete('/removedoctor', doctorControl.removeDoctor);
 
 // pharmacy
 Router.post('/addmedicine', pharmacyControl.addMedicine);
@@ -24,6 +25,7 @@ Router.get('/searchmedicine', pharmacyControl.searchMedicine);
 // bills
 Router.post('/addbill', userbillControl.addBill);
 Router.get('/getuserbill', userbillControl.getAllBill);
+Router.delete('/removebill', userbillControl.removeBill);
 
 
 module.exports = Router;

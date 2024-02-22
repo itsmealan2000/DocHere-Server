@@ -26,3 +26,15 @@ exports.getDoctor = async (req, res) => {
         res.status(404).json({ message: err.message });
     }
 }
+
+// remove a doctor
+exports.removeDoctor = async (req, res) => {
+    const { docname } = req.body;
+    try {
+        await doctor.deleteOne({ docname });
+        res.status(200).json({ username: docname });
+    }
+    catch (err) {
+        res.status(409).json({ message: err.message });
+    }
+}
